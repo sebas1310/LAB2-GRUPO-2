@@ -1,11 +1,14 @@
 package com.example.lab2grupo2.controller;
 
-import ch.qos.logback.core.model.Model;
 import com.example.lab2grupo2.entity.Artista;
 
+import com.example.lab2grupo2.entity.Integrante;
+import com.example.lab2grupo2.entity.Proveedor;
 import com.example.lab2grupo2.repository.ArtistaRepository;
+import com.example.lab2grupo2.repository.IntegranteRepository;
 import com.example.lab2grupo2.repository.ProveedorRepository;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,54 +21,54 @@ import java.util.Optional;
 public class ArtistaController {
 
     final ArtistaRepository artistaRepository;
-    public ArtistaController(ArtistaRepository artistaRepository) {
-        this.artistaRepository = artistaRepository;
+
+    public ArtistaController(ArtistaRepository artistaRepository){
+        this.artistaRepository= artistaRepository;
     }
 
-    @GetMapping(value = "/artista/lista")
-    public ArtistaController(Model model) {
-        model.addAttribute("list",artistaRepository.findAll());
-        this.artistaRepository = artistaRepository;
-        return "artista/lista";
-    }
-
-    @GetMapping("/listar")
-    public String listar(Model model) {
+    @GetMapping("/Integrante/lista")
+    public String listaIntegrantes (Model model){
         List<Artista> artistaList = artistaRepository.findAll();
-        return "shipper/lista";
-    }
-
-
-    @PostMapping("/guardar")
-    public String guardar(Artista artista) {
-
-        artistaRepository.save(artista);
+        model.addAttribute("listartistas",artistaList);
         return "artista/lista";
     }
 
+    @GetMapping("/Integrante/editar")
+    public String editarIntegrante(Model model, @RequestParam("id") int id){
+        Optional<Artista> optIntegrante = artistaRepository.findById(id);
 
-    @GetMapping("/editar")
-    public String editar(@RequestParam("id") int id, Artista artista) {
-
-        Optional<Artista> shipperOptional = artistaRepository.findById(id);
-        if (shipperOptional.isPresent()) {
-            Artista artista1 = shipperOptional.get();
-            artista1.addAttribute("shipper", artista1);
-            return "shipper/editarForm";
+        if (optIntegrante.isPresent()) {
+            Artista artista = optIntegrante.get();
+            model.addAttribute("integrante", artista);
+            return "integrante/editar";
         } else {
-            return "redirect:/listar";
+            return "artista/lista";
         }
+
     }
 
-    @GetMapping("/borrar")
-    public String borrar(@RequestParam("id") int id) {
-        Optional<Artista> shipperOptional = artistaRepository.findById(id);
-        if (shipperOptional.isPresent()) {
+    @GetMapping("/Integrante/nuevo")
+    public String nuevoIntegrante(){
+        return "integrante/nuevo";
+    }
+
+    @PostMapping("/Integrante/guardar")
+    public String guardarIntegrante(Artista artista){
+        artistaRepository.save(artista);
+        return "redirect:/artista/lista";
+    }
+
+/*
+    public String borrarIntegrante(Model model, @RequestParam("id") int id){
+        Optional<Artista> artistaOptional = artistaRepository.findById(id);
+
+        if (optArtista.isPresent()) {
             artistaRepository.deleteById(id);
         }
-        return "redirect:/listar";
+
+        return "redirect:/artista/lista";
     }
-
-
-
+*/
 }
+
+
