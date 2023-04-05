@@ -13,21 +13,22 @@
     <h2>Lista Artistas</h2>
     <a class="btn btn-primary mt-4 mb-4" th:href="@{/nuevo}">Nuevo Artista</a>
     <table class="table table-sm">
-
         <tr>
             <th>#</th>
-            <th>Nombre de la compañia</th>
-            <th>Teléfono</th>
+            <th>Nombre</th>
+            <th>Fecha</th>
+            <th>Tipo Musica</th>
             <th></th>
             <th></th>
         </tr>
-
-
-        <tr th:each="shipper,obj: ${lista}">
-            <td th:text="${obj.index+1}"> </td>
-
-            <td><a th:href="@{'/editar?id=' + ${shipper.id}}">Editar</a></td>
-            <td><a th:href="@{'/borrar?id=' + ${shipper.id}}">Borrar</a></td>
+        <tr th:each="a,idx:${list}">
+            <td th:text="${idx.index+1}"></td>
+            <td th:text="${a.nombre}"></td>
+            <td th:text="${a.fecha}"></td>
+            <td th:text="${a.tipomusica}"></td>
+            <td><a class="btn btn-primary" th:href="@{'/artista/editar?'+'id='+${p.id}}">Editar</a>
+            </td>
+            <td><a class="btn btn-danger" th:href="@{'/artista/delete?'+'id='+${p.id}}">Borrar</a></td>
         </tr>
     </table>
 </div>
