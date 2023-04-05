@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/artistas")
 public class ArtistaController {
-
+/*
     final ArtistaRepository artistaRepository;
 
     public ArtistaController(ArtistaRepository artistaRepository) {
@@ -23,7 +23,7 @@ public class ArtistaController {
 
         return "shipper/lista";
     }
-    
+
 
     @PostMapping("/guardar")
     public String guardar(Artista artista) {
@@ -31,5 +31,5 @@ public class ArtistaController {
         artistaRepository.save(artista);
         return "artista/lista";
     }
-
+*/
 }
