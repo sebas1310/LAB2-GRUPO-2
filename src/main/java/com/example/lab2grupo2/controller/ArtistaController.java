@@ -3,6 +3,7 @@ package com.example.lab2grupo2.controller;
 import ch.qos.logback.core.model.Model;
 import com.example.lab2grupo2.entity.Artista;
 
+import com.example.lab2grupo2.repository.ArtistaRepository;
 import com.example.lab2grupo2.repository.ProveedorRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,13 +15,18 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/artistas")
 public class ArtistaController {
-/*
-    final ArtistaRepository artistaRepository;
 
+    final ArtistaRepository artistaRepository;
     public ArtistaController(ArtistaRepository artistaRepository) {
         this.artistaRepository = artistaRepository;
+    }
+
+    @GetMapping(value = "/artista/lista")
+    public ArtistaController(Model model) {
+        model.addAttribute("list",artistaRepository.findAll());
+        this.artistaRepository = artistaRepository;
+        return "artista/lista";
     }
 
     @GetMapping("/listar")
@@ -36,8 +42,6 @@ public class ArtistaController {
         artistaRepository.save(artista);
         return "artista/lista";
     }
-
-
 
 
     @GetMapping("/editar")
@@ -62,6 +66,6 @@ public class ArtistaController {
         return "redirect:/listar";
     }
 
- */
+
 
 }

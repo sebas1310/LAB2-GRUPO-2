@@ -7,21 +7,21 @@ import lombok.Setter;
 @Entity
 @Setter
 @Getter
+@Table(name = "artistas")
+
 public class Artista {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idProveedores")
+    @Column(name = "idArtistas")
     private Integer id;
 
     @Column(name = "Nombre")
     private String nombre;
 
-    @Column(name = "Telefono")
-    private Integer telefono;
+    @Column(name = "Fecha")
+    private Integer fecha;
 
-    @Column(name = "Elemento")
-    private String elemento;
+    @Column(name = "TipoMusica")
+    private String tipoMusica;
 
-    public void addAtribute(String s) {
-    }
 }
