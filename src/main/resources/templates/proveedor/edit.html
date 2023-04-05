@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
+        crossorigin="anonymous">
+  <title>Editar Transportista</title>
+</head>
+<body class="container">
+<div class="container">
+  <h2>Editar Transportista</h2>
+  <hr/>
+  <form method="post" th:action="@{'/proveedor/guardar'}">
+    <input  th:value="${prov.id}" name="id" type="hidden" />
+    <div class="mb-3">
+      <label for="nombre">Nombre de la compañía</label>
+      <input th:value="${prov.nombre}" name="nombre" type="text" class="form-control" id="nombre"/>
+    </div>
+    <div class="mb-3">
+      <label for="telefono">Telefono</label>
+      <input  th:value="${prov.telefono}" name="telefono" type="text" class="form-control" id="telefono"/>
+    </div>
+    <div class="mb-3">
+      <label for="elemento">Elemento</label>
+      <input  th:value="${prov.elemento}" name="elemento" type="text" class="form-control" id="elemento"/>
+    </div>
+    <a class="btn btn-danger" th:href="@{'/distribuidoras/lista'}">Cancelar</a>
+    <button type="submit" class="btn btn-primary">Actualizar</button>
+  </form>
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+        crossorigin="anonymous"></script>
+</html>
