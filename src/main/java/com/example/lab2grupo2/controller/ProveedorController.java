@@ -37,10 +37,23 @@ public class ProveedorController {
 
     }
 
+    @GetMapping("proveedor/nuevo")
+    public String nuevo() {
+        return "proveedor/nuevo";
+    }
 
     @PostMapping(value = "proveedor/guardar")
     public String guardar(Proveedor proveedor){
         proveedorRepository.save(proveedor);
         return "redirect:/proveedor/lista";
+    }
+
+    @GetMapping("proveedor/delete")
+    public String borrar(@RequestParam("id") int id) {
+        Optional<Proveedor> shipperOptional = proveedorRepository.findById(id);
+        if (shipperOptional.isPresent()) {
+            proveedorRepository.deleteById(id);
+        }
+        return "redirect:/listar";
     }
 }
